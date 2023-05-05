@@ -1,0 +1,13 @@
+## Interface: 100100
+## Version: 1.0.0
+## Title: Drakewatcher Manuscripts
+## Notes: Track your Drakewatcher Manuscripts collection
+## IconTexture: Interface\Icons\inv_glyph_majordeathknight
+## AddonCompartmentFunc: DwMs_OnAddonCompartmentClick
+## Author: Mokulu
+## OptionalDeps: TomTom
+## SavedVariables: DrakewatcherManuscriptsDB
+
+Embeds.xml
+
+DrakewatcherManuscripts.lua

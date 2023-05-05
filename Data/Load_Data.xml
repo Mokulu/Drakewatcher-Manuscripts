@@ -1,0 +1,8 @@
+<Ui xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+    <Script file="Constants.lua"/>
+    <Script file="ProtoDrake.lua"/>
+    <Script file="Velocidrake.lua"/>
+    <Script file="HighlandDrake.lua"/>
+    <Script file="Wylderdrake.lua"/>
+    <Script file="Slitherdrake.lua"/>
+</Ui>
