@@ -33,7 +33,7 @@ function DrakewatcherManuscripts:CreateFrame()
     end
 
     local db = self.db.global
-    local frameWidth, frameHeight = 650, 500
+    local frameWidth, frameHeight = 880, 650
     local f = CreateFrame("Frame", "DrakewatcherManuscripts", UIParent, "PortraitFrameTemplate")
     f:SetScript("OnHide", function()
         self.frameShown = false
@@ -136,55 +136,14 @@ function DrakewatcherManuscripts:CreateFrame()
 
     -- content windows
     local contentWindows = {}
-    for i, drake in ipairs(DWMS_DRAKE_DATA) do
+    for i in ipairs(DWMS_DRAKE_DATA) do
         local contentWindow = AceGUI:Create("InlineGroup")
-        contentWindows[i] = contentWindow
         contentWindow:SetLayout("Fill")
         contentWindow.frame:SetParent(f)
         contentWindow.frame:SetPoint("TOPLEFT", f, "TOPLEFT", 4, -62)
         contentWindow.frame:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -4, 4)
-
-        local frame = AceGUI:Create("ScrollFrame")
-        frame:SetLayout("Flow")
-        frame:SetFullWidth(true)
-        contentWindow:AddChild(frame)
-        contentWindow.scrollFrame = frame
-
-        for catName, cat in pairs(drake) do
-            if catName ~= "name" then
-                local label = AceGUI:Create("Label")
-                label:SetText(catName)
-                label:SetFontObject(GameFontNormalLarge)
-                label:SetColor(0.4, 0.73, 1)
-                label:SetFullWidth(true)
-                frame:AddChild(label)
-
-                -- loop 10 times
-                for _, manuscript in ipairs(cat) do
-                    local item = Item:CreateFromItemID(manuscript.itemId)
-                    local isObtained = C_QuestLog.IsQuestFlaggedCompleted(manuscript.questId)
-                    local itemFrame = AceGUI:Create("InteractiveLabel")
-                    frame:AddChild(itemFrame)
-
-                    item:ContinueOnItemLoad(function()
-                        local name = item:GetItemName()
-                        -- split name by :
-                        local nameProps = { strsplit(":", name) }
-                        local icon = item:GetItemIcon()
-                        local quality = item:GetItemQuality()
-                        local r, g, b = GetItemQualityColor(quality)
-
-                        itemFrame:SetImage(icon)
-                        itemFrame:SetImageSize(32, 32)
-                        itemFrame:SetText(nameProps[2] or name)
-                        itemFrame:SetDisabled(not isObtained)
-                        --itemFrame:SetHighlight(r, g, b, 1)
-                    end)
-                end
-            end
-        end
+        contentWindows[i] = contentWindow
     end
-
     f.contentWindows = contentWindows
     self:SelectTab(1)
 
@@ -193,13 +152,82 @@ function DrakewatcherManuscripts:CreateFrame()
     tinsert(UISpecialFrames, "DrakewatcherManuscriptsFrame")
 end
 
+function DrakewatcherManuscripts:DrawTab(tabIndex)
+    local contentWindow = self.frame.contentWindows[tabIndex]
+    local frame = AceGUI:Create("ScrollFrame")
+    frame:SetLayout("Flow")
+    frame:SetFullWidth(true)
+    contentWindow:AddChild(frame)
+    contentWindow.scrollFrame = frame
+
+    for catName, cat in pairs(DWMS_DRAKE_DATA[tabIndex]) do
+        if catName ~= "name" then
+            local label = AceGUI:Create("Label")
+            label:SetText(catName)
+            label:SetFontObject(GameFontNormalLarge)
+            label:SetColor(0.4, 0.73, 1)
+            label:SetFullWidth(true)
+            frame:AddChild(label)
+
+            -- loop 10 times
+            for _, manuscript in ipairs(cat) do
+                self:DrawItemFrame(frame, manuscript)
+            end
+        end
+    end
+end
+
+function drawItemIcon(itemFrame, isObtained, itemName, itemQuality, itemIcon)
+    local nameProps = { strsplit(":", itemName) }
+    local r, g, b = GetItemQualityColor(itemQuality)
+
+    local iconFrame = AceGUI:Create("Icon")
+    itemFrame:AddChild(iconFrame)
+    iconFrame:SetImage(itemIcon)
+    iconFrame:SetImageSize(32, 32)
+    iconFrame:SetWidth(40)
+    iconFrame:SetHeight(40)
+
+    local nameFrame = AceGUI:Create("Label")
+    nameFrame:SetFontObject(GameFontNormal)
+    itemFrame:AddChild(nameFrame)
+    nameFrame:SetText(nameProps[2] or itemName)
+    nameFrame:SetColor(r, g, b)
+    iconFrame:SetDisabled(not isObtained)
+end
+
+function DrakewatcherManuscripts:DrawItemFrame(frame, manuscript)
+    local itemFrame = AceGUI:Create("InlineGroup")
+
+    local itemName, _, itemQuality, _, _, _, _, _, _, itemIcon = GetItemInfo(manuscript.itemId)
+    local isObtained = C_QuestLog.IsQuestFlaggedCompleted(manuscript.questId)
+    if not itemName then
+        local item = Item:CreateFromItemID(manuscript.itemId)
+        item:ContinueOnItemLoad(function()
+            drawItemIcon(itemFrame, isObtained, item:GetItemName(), item:GetItemQuality(), item:GetItemIcon())
+        end)
+    else
+        drawItemIcon(itemFrame, isObtained, itemName, itemQuality, itemIcon)
+    end
+
+    itemFrame:SetLayout("Flow")
+    itemFrame:SetWidth(270)
+    frame:AddChild(itemFrame)
+end
+
 function DrakewatcherManuscripts:SelectTab(tabIndex)
     PanelTemplates_SetTab(self.frame, tabIndex)
     for i, v in ipairs(self.frame.contentWindows) do
         if i == tabIndex then
+            self:DrawTab(tabIndex)
             v.frame:Show()
+
+            C_Timer.After(0.1, function()
+                v:DoLayout()
+            end)
         else
             v.frame:Hide()
+            v:ReleaseChildren()
         end
     end
 end
