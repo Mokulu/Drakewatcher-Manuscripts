@@ -155,24 +155,26 @@ end
 function DrakewatcherManuscripts:DrawTab(tabIndex)
     local contentWindow = self.frame.contentWindows[tabIndex]
     local frame = AceGUI:Create("ScrollFrame")
-    frame:SetLayout("Flow")
+    frame:SetLayout("List")
     frame:SetFullWidth(true)
     contentWindow:AddChild(frame)
     contentWindow.scrollFrame = frame
 
-    for catName, cat in pairs(DWMS_DRAKE_DATA[tabIndex]) do
-        if catName ~= "name" then
-            local label = AceGUI:Create("Label")
-            label:SetText(catName)
-            label:SetFontObject(GameFontNormalLarge)
-            label:SetColor(0.4, 0.73, 1)
-            label:SetFullWidth(true)
-            frame:AddChild(label)
+    for i, cat in ipairs(DWMS_DRAKE_DATA[tabIndex].manuscripts) do
+        local label = AceGUI:Create("Label")
+        label:SetText(DWMS_DRAKE_DATA[tabIndex].categoryNames[i])
+        label:SetFontObject(GameFontNormalLarge)
+        label:SetColor(0.4, 0.73, 1)
+        label:SetFullWidth(true)
+        frame:AddChild(label)
 
-            -- loop 10 times
-            for _, manuscript in ipairs(cat) do
-                self:DrawItemFrame(frame, manuscript)
-            end
+        local container = AceGUI:Create("SimpleGroup")
+        frame:AddChild(container)
+        container:SetLayout("Flow")
+        container:SetFullWidth(true)
+        -- loop 10 times
+        for _, manuscript in ipairs(cat) do
+            self:DrawItemFrame(container, manuscript)
         end
     end
 end
@@ -256,12 +258,10 @@ end
 function countManuscripts()
     local owned, total = 0, 0
     for _, drake in ipairs(DWMS_DRAKE_DATA) do
-        for k, cats in pairs(drake) do
-            if k ~= "name" then
-                for _, manuscript in ipairs(cats) do
-                    owned = owned + (C_QuestLog.IsQuestFlaggedCompleted(manuscript.questId) and 1 or 0)
-                    total = total + 1
-                end
+        for _, cats in ipairs(drake.manuscripts) do
+            for _, manuscript in ipairs(cats) do
+                owned = owned + (C_QuestLog.IsQuestFlaggedCompleted(manuscript.questId) and 1 or 0)
+                total = total + 1
             end
         end
     end
