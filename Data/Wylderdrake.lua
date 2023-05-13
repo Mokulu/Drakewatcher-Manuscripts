@@ -1,5 +1,5 @@
 DWMS_WYLDERDRAKE = {
-    name = 'Wylderdrake',
+    name = 'Cliffside Wylderdrake',
     categoryNames = {},
     manuscripts = {},
 }

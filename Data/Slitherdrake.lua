@@ -1,5 +1,5 @@
 DWMS_SLITHERDRAKE = {
-    name = 'Slitherdrake',
+    name = 'Winding Slitherdrake',
     categoryNames = {},
     manuscripts = {},
 }

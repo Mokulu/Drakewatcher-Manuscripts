@@ -1,5 +1,5 @@
 DWMS_VELOCIDRAKE = {
-    name = 'Velocidrake',
+    name = 'Windborne Velocidrake',
     categoryNames = {
         'Skin Color',
         'Skin Scale Type',
@@ -28,9 +28,9 @@ DWMS_VELOCIDRAKE = {
             -- Red
             { itemId = 197614, questId = 69818 },
             -- Teal
-            --{ itemId = 197615, questId = 69819 },
+            { itemId = 197615, questId = 69819, hidden = true },
             -- White
-            --{ itemId = 197616, questId = 69820 },
+            { itemId = 197616, questId = 69820, hidden = true },
         },
         -- Skin Scale Type
         {
@@ -49,7 +49,7 @@ DWMS_VELOCIDRAKE = {
         -- Horn
         {
             -- Helm
-            --{ itemId = 197600, questId = 69804 },
+            { itemId = 197600, questId = 69804, hidden = true },
             -- Wavy
             { itemId = 197601, questId = 69805 },
             -- Cluster
@@ -121,7 +121,7 @@ DWMS_VELOCIDRAKE = {
         -- Armor Color
         {
             -- Bronze and Green
-            --{ itemId = 197577, questId = 69781 },
+            { itemId = 197577, questId = 69781, hidden = true },
             -- Silver and Blue
             { itemId = 197578, questId = 69782 },
             -- Steel and Orange
@@ -131,7 +131,7 @@ DWMS_VELOCIDRAKE = {
             -- Silver and Purple
             { itemId = 197581, questId = 69785 },
             -- White and Pink
-            --{ itemId = 197582, questId = 69786 },
+            { itemId = 197582, questId = 69786, hidden = true },
         },
         -- Pattern
         {

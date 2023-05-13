@@ -1,5 +1,5 @@
 DWMS_PROTODRAKE = {
-    name = 'Proto-Drake',
+    name = 'Renewed Proto-Drake',
     categoryNames = {
         'Full Transformation',
         'Skin Color',
@@ -35,7 +35,7 @@ DWMS_PROTODRAKE = {
             -- Bronze
             { itemId = 197391, questId = 69592, sources = { { coords = { zone = DWMS_ZONE.VALDRAKKEN, x = 46.8, y = 78.8 }, name = "Kaestrasz", note = "Valdrakken Accord - Renown 21", cost = { { type = "item", id = 190324, count = 1 }, { type = "currency", id = 2003, count = 400 } } } } },
             -- White
-            --{ itemId = 197393, questId = 69594 },
+            { itemId = 197393, questId = 69594, hidden = true },
         },
         -- Skin Scale Type
         {
@@ -54,7 +54,7 @@ DWMS_PROTODRAKE = {
         -- Horns
         {
             -- Helm
-            -- { itemId: 197373, questId = 69574 },
+            { itemId = 197373, questId = 69574, hidden = true },
             -- Swept
             { itemId = 197374, questId = 69575 },
             -- Curled
@@ -128,11 +128,11 @@ DWMS_PROTODRAKE = {
             -- Gold
             { itemId = 197352, questId = 69553 },
             -- Gold and White
-            --{ itemId = 197349, questId = 69550 },
+            { itemId = 197349, questId = 69550, hidden = true },
             -- Black and Red
-            --{ itemId = 197348, questId = 69549 },
+            { itemId = 197348, questId = 69549, hidden = true },
             -- Bronze and Pink
-            --{ itemId = 197353, questId = 69554 },
+            { itemId = 197353, questId = 69554, hidden = true },
         },
         -- Snout
         {
@@ -201,12 +201,14 @@ DWMS_PROTODRAKE = {
             -- Red
             { itemId = 197370, questId = 69571 },
             -- Green
-            --{ itemId = 197371, questId = 69572 },
+            { itemId = 197371, questId = 69572, hidden = true },
         },
         -- Unknown sources / unimplemented
-        -- Hairy Back
-        -- { itemId: 197356, questId = 69557 },
-        -- Horned Back
-        -- { itemId: 197354, questId = 69555 },
+        {
+            -- Hairy Back
+            { itemId = 197356, questId = 69557, hidden = true },
+            -- Horned Back
+            { itemId = 197354, questId = 69555, hidden = true },
+        }
     }
 }

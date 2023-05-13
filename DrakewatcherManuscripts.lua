@@ -161,20 +161,40 @@ function DrakewatcherManuscripts:DrawTab(tabIndex)
     contentWindow.scrollFrame = frame
 
     for i, cat in ipairs(DWMS_DRAKE_DATA[tabIndex].manuscripts) do
-        local label = AceGUI:Create("Label")
-        label:SetText(DWMS_DRAKE_DATA[tabIndex].categoryNames[i])
-        label:SetFontObject(GameFontNormalLarge)
-        label:SetColor(0.4, 0.73, 1)
-        label:SetFullWidth(true)
-        frame:AddChild(label)
-
-        local container = AceGUI:Create("SimpleGroup")
-        frame:AddChild(container)
-        container:SetLayout("Flow")
-        container:SetFullWidth(true)
-        -- loop 10 times
+        local count = 0
         for _, manuscript in ipairs(cat) do
-            self:DrawItemFrame(container, manuscript)
+            local isOwned = C_QuestLog.IsQuestFlaggedCompleted(manuscript.questId)
+            if (isOwned or not manuscript.hidden) then
+                count = count + 1
+            end
+        end
+
+        if count > 0 then
+            local spacer = AceGUI:Create("Label")
+            spacer:SetText(" ")
+            spacer:SetFullWidth(true)
+            frame:AddChild(spacer)
+            local label = AceGUI:Create("Label")
+            label:SetText(DWMS_DRAKE_DATA[tabIndex].categoryNames[i])
+            label:SetFontObject(GameFontNormalLarge)
+            label:SetColor(0.4, 0.73, 1)
+            label:SetFullWidth(true)
+            frame:AddChild(label)
+
+            local container = AceGUI:Create("SimpleGroup")
+            frame:AddChild(container)
+            container:SetLayout("Flow")
+            container:SetFullWidth(true)
+            for _, manuscript in ipairs(cat) do
+                local isOwned = C_QuestLog.IsQuestFlaggedCompleted(manuscript.questId)
+                if (isOwned or not manuscript.hidden) then
+                    self:DrawItemFrame(container, manuscript)
+                end
+            end
+
+            C_Timer.After(0.1, function()
+                container:DoLayout()
+            end)
         end
     end
 end
@@ -260,8 +280,11 @@ function countManuscripts()
     for _, drake in ipairs(DWMS_DRAKE_DATA) do
         for _, cats in ipairs(drake.manuscripts) do
             for _, manuscript in ipairs(cats) do
-                owned = owned + (C_QuestLog.IsQuestFlaggedCompleted(manuscript.questId) and 1 or 0)
-                total = total + 1
+                local isOwned = C_QuestLog.IsQuestFlaggedCompleted(manuscript.questId)
+                if (isOwned or not manuscript.hidden) then
+                    owned = owned + (isOwned and 1 or 0)
+                    total = total + 1
+                end
             end
         end
     end
