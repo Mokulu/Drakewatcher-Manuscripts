@@ -1,5 +1,5 @@
 ## Interface: 100100
-## Version: @projectversion@
+## Version: @project-version@
 ## Title: Drakewatcher Manuscripts
 ## Notes: Track your Drakewatcher Manuscripts collection
 ## IconTexture: Interface\Icons\inv_glyph_majordeathknight
