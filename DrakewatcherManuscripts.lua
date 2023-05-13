@@ -284,10 +284,12 @@ function DrakewatcherManuscripts:OnEnable()
 end
 
 function DrakewatcherManuscripts:QUEST_LOG_UPDATE()
-    if self.frame and self.frame:IsShown() then
-        local tabIndex = PanelTemplates_GetSelectedTab(self.frame)
-        self.frame.contentWindows[tabIndex]:ReleaseChildren()
-        self:DrawTab(tabIndex)
+    if self.frame then
+        if self.frame:IsShown() then
+            local tabIndex = PanelTemplates_GetSelectedTab(self.frame)
+            self.frame.contentWindows[tabIndex]:ReleaseChildren()
+            self:DrawTab(tabIndex)
+        end
         self:UpdateProgressBar()
     end
 end
