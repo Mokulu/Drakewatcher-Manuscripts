@@ -209,6 +209,6 @@ DWMS_PROTODRAKE = {
             { itemId = 197356, questId = 69557, hidden = true },
             -- Horned Back
             { itemId = 197354, questId = 69555, hidden = true },
-        }
+        },
     }
 }

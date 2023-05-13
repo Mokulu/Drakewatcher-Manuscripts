@@ -191,11 +191,21 @@ function DrakewatcherManuscripts:DrawTab(tabIndex)
                     self:DrawItemFrame(container, manuscript)
                 end
             end
-
-            C_Timer.After(0.1, function()
-                container:DoLayout()
-            end)
         end
+
+        -- Re-do layout after a short delay to avoid spacing issues caused by items being added after load
+        C_Timer.After(0.2, function()
+            for _, child in ipairs(frame.content) do
+                for _, child2 in ipairs(child.content) do
+                    for _, child3 in ipairs(child2.content) do
+                        child3:DoLayout()
+                    end
+                    child2:DoLayout()
+                end
+                child:DoLayout()
+            end
+            frame:DoLayout()
+        end)
     end
 end
 
@@ -220,6 +230,9 @@ end
 
 function DrakewatcherManuscripts:DrawItemFrame(frame, manuscript)
     local itemFrame = AceGUI:Create("InlineGroup")
+    itemFrame:SetLayout("Flow")
+    itemFrame:SetWidth(270)
+    frame:AddChild(itemFrame)
 
     local itemName, _, itemQuality, _, _, _, _, _, _, itemIcon = GetItemInfo(manuscript.itemId)
     local isObtained = C_QuestLog.IsQuestFlaggedCompleted(manuscript.questId)
@@ -231,10 +244,6 @@ function DrakewatcherManuscripts:DrawItemFrame(frame, manuscript)
     else
         drawItemIcon(itemFrame, isObtained, itemName, itemQuality, itemIcon)
     end
-
-    itemFrame:SetLayout("Flow")
-    itemFrame:SetWidth(270)
-    frame:AddChild(itemFrame)
 end
 
 function DrakewatcherManuscripts:SelectTab(tabIndex)

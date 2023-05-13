@@ -103,7 +103,7 @@ DWMS_VELOCIDRAKE = {
         -- Tail
         {
             -- Exposed Fin
-            { itemId = 197621, questId = 69825 },
+            { itemId = 197621, questId = 69825, hidden = true },
             -- Fin
             { itemId = 197622, questId = 69826 },
             -- Spikes
