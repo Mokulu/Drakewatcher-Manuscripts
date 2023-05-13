@@ -12,6 +12,7 @@ DWMS_HIGHLAND_DRAKE = {
         'Back',
         'Tail',
         'Body Armor',
+        'Head Armor',
         'Armor Color',
         'Crest',
         'Hair Color',
@@ -122,6 +123,13 @@ DWMS_HIGHLAND_DRAKE = {
             -- Armor
             { itemId = 197099, questId = 69300 },
         },
+        -- Head Armor
+        {
+            -- Ornate Helm
+            { itemId = 197120, questId = 69321 },
+            -- Helm
+            { itemId = 197119, questId = 69320, hidden = true },
+        },
         -- Armor Color
         {
             -- Gold and Black
@@ -159,10 +167,6 @@ DWMS_HIGHLAND_DRAKE = {
             { itemId = 197113, questId = 69314 },
             -- Multi-Horned
             { itemId = 197114, questId = 69315 },
-            -- Ornate Helm
-            { itemId = 197120, questId = 69321 },
-            -- Helm
-            { itemId = 197119, questId = 69320, hidden = true },
         },
         -- Hair Color
         {

@@ -10,6 +10,7 @@ DWMS_VELOCIDRAKE = {
         'Back',
         'Tail',
         'Body Armor',
+        'Head Armor',
         'Armor Color',
         'Pattern',
         'Throat',
@@ -48,8 +49,6 @@ DWMS_VELOCIDRAKE = {
         },
         -- Horn
         {
-            -- Helm
-            { itemId = 197600, questId = 69804, hidden = true },
             -- Wavy
             { itemId = 197601, questId = 69805 },
             -- Cluster
@@ -117,6 +116,11 @@ DWMS_VELOCIDRAKE = {
         {
             -- Armor
             { itemId = 197588, questId = 69792 },
+        },
+        -- Head Armor
+        {
+            -- Helm
+            { itemId = 197600, questId = 69804, hidden = true },
         },
         -- Armor Color
         {

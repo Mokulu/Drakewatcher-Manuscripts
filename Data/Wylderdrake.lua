@@ -10,6 +10,7 @@ DWMS_WYLDERDRAKE = {
         'Horn Style',
         'Back',
         'Armor',
+        'Head Armor',
         'Pattern',
         'Armor Color',
         'Brow',
@@ -101,6 +102,11 @@ DWMS_WYLDERDRAKE = {
             -- Armor
             { itemId = 196961, questId = 69161 },
         },
+        -- Head Armor
+        {
+            -- Helm
+            { itemId = 196990, questId = 69190, hidden = true },
+        },
         -- Pattern
         {
             -- Wide Stripes
@@ -164,8 +170,6 @@ DWMS_WYLDERDRAKE = {
             { itemId = 196980, questId = 69180 },
             -- Conical
             { itemId = 196981, questId = 69181 },
-            -- Helm
-            { itemId = 196990, questId = 69190, hidden = true },
         },
         -- Ears
         {

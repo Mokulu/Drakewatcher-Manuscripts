@@ -11,6 +11,7 @@ DWMS_PROTODRAKE = {
         'Tail',
         'Throat',
         'Body Armor',
+        'Head Armor',
         'Armor Color',
         'Snout',
         'Crest',
@@ -53,8 +54,6 @@ DWMS_PROTODRAKE = {
         },
         -- Horns
         {
-            -- Helm
-            { itemId = 197373, questId = 69574, hidden = true },
             -- Swept
             { itemId = 197374, questId = 69575 },
             -- Curled
@@ -114,6 +113,11 @@ DWMS_PROTODRAKE = {
         {
             -- Armor
             { itemId = 197357, questId = 69558 },
+        },
+        -- Head Armor
+        {
+            -- Helm
+            { itemId = 197373, questId = 69574, hidden = true },
         },
         -- Armor Color
         {
