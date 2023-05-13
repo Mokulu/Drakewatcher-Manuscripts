@@ -35,9 +35,6 @@ function DrakewatcherManuscripts:CreateFrame()
     local db = self.db.global
     local frameWidth, frameHeight = 880, 650
     local f = CreateFrame("Frame", "DrakewatcherManuscripts", UIParent, "PortraitFrameTemplate")
-    f:SetScript("OnHide", function()
-        self.frameShown = false
-    end)
 
     f:EnableMouse(true)
     f:SetMovable(true)
@@ -88,8 +85,8 @@ function DrakewatcherManuscripts:CreateFrame()
 
     -- progress bar
     local progressBar = CreateFrame("Frame", nil, f, "TooltipBackdropTemplate")
-    progressBar:SetBackdropBorderColor(0.5,0.5,0.5)
-    progressBar:SetSize(120,20)
+    progressBar:SetBackdropBorderColor(0.5, 0.5, 0.5)
+    progressBar:SetSize(120, 20)
     progressBar:SetPoint("CENTER", f, "TOP", 0, -42)
     progressBar.bar = CreateFrame("StatusBar", nil, progressBar)
     progressBar.bar:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
@@ -98,7 +95,7 @@ function DrakewatcherManuscripts:CreateFrame()
     progressBar.bar:SetPoint("BOTTOMRIGHT", -5, 5)
     progressBar.text = progressBar.bar:CreateFontString()
     progressBar.text:SetFontObject(GameFontNormal)
-    progressBar.text:SetTextColor(1,1,1)
+    progressBar.text:SetTextColor(1, 1, 1)
     progressBar.text:SetTextScale(0.8)
     progressBar.text:SetPoint("CENTER")
     progressBar.text:SetJustifyH("CENTER")
@@ -107,13 +104,9 @@ function DrakewatcherManuscripts:CreateFrame()
     f.progressBar = progressBar
 
     -- copying mixins to statusbar
-    Mixin(progressBar.bar,SmoothStatusBarMixin)
+    Mixin(progressBar.bar, SmoothStatusBarMixin)
 
-    -- using mixin methods
-    local owned, total = countManuscripts()
-    progressBar.bar:SetMinMaxSmoothedValue(0, total)
-    progressBar.bar:SetSmoothedValue(owned)
-    progressBar.text:SetText(owned.."/"..total)
+    self:UpdateProgressBar()
 
     local tabs = {}
     _self = self
@@ -121,7 +114,7 @@ function DrakewatcherManuscripts:CreateFrame()
     for i, v in ipairs(DWMS_DRAKE_DATA) do
         local button = CreateFrame("Button", "$parentTab" .. i, f, "PanelTopTabButtonTemplate", i)
         if i > 1 then
-            button:SetPoint("LEFT", "$parentTab" .. (i-1), "RIGHT", -16, 0);
+            button:SetPoint("LEFT", "$parentTab" .. (i - 1), "RIGHT", -16, 0);
         else
             button:SetPoint("TOPLEFT", f, "TOPLEFT", 6, -50)
         end
@@ -150,6 +143,16 @@ function DrakewatcherManuscripts:CreateFrame()
     -- insert into special frames table
     _G["DrakewatcherManuscriptsFrame"] = f
     tinsert(UISpecialFrames, "DrakewatcherManuscriptsFrame")
+end
+
+function DrakewatcherManuscripts:UpdateProgressBar()
+    local progressBar = self.frame.progressBar
+
+    -- using mixin methods
+    local owned, total = countManuscripts()
+    progressBar.bar:SetMinMaxSmoothedValue(0, total)
+    progressBar.bar:SetSmoothedValue(owned)
+    progressBar.text:SetText(owned .. "/" .. total)
 end
 
 function DrakewatcherManuscripts:DrawTab(tabIndex)
@@ -277,11 +280,16 @@ end
 
 function DrakewatcherManuscripts:OnEnable()
     -- Register events
-    self:RegisterEvent("PLAYER_ENTERING_WORLD")
+    self:RegisterEvent("QUEST_LOG_UPDATE");
 end
 
-function DrakewatcherManuscripts:PLAYER_ENTERING_WORLD()
-    self:ToggleFrame()
+function DrakewatcherManuscripts:QUEST_LOG_UPDATE()
+    if self.frame and self.frame:IsShown() then
+        local tabIndex = PanelTemplates_GetSelectedTab(self.frame)
+        self.frame.contentWindows[tabIndex]:ReleaseChildren()
+        self:DrawTab(tabIndex)
+        self:UpdateProgressBar()
+    end
 end
 
 function countManuscripts()
