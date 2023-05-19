@@ -294,6 +294,31 @@ function DrakewatcherManuscripts:QUEST_LOG_UPDATE()
     end
 end
 
+function DrakewatcherManuscripts:GetManuscriptByItemId(itemId)
+    for _, drake in ipairs(DWMS_DRAKE_DATA) do
+        for _, cats in ipairs(drake.manuscripts) do
+            for _, manuscript in ipairs(cats) do
+                if manuscript.itemId == itemId or manuscript.altItemId == itemId then
+                    return manuscript
+                end
+            end
+        end
+    end
+    return nil
+end
+
+function DrakewatcherManuscripts:ProcessTooltip(tooltip, data)
+    if not tooltip or tooltip ~= GameTooltip or not data then return end
+    local manuscript = self:GetManuscriptByItemId(data.id)
+    if not manuscript then return end
+    tooltip:AddLine(" ")
+    if (C_QuestLog.IsQuestFlaggedCompleted(manuscript.questId)) then
+        tooltip:AddLine("You have obtained this appearance.", 0.9, 0.8, 0.5)
+    else
+        tooltip:AddLine("You have not obtained this appearance.", 0.4, 0.73, 1)
+    end
+end
+
 function countManuscripts()
     local owned, total = 0, 0
     for _, drake in ipairs(DWMS_DRAKE_DATA) do
@@ -313,3 +338,7 @@ end
 function DwMs_OnAddonCompartmentClick()
     DrakewatcherManuscripts:ToggleFrame()
 end
+
+TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tooltip, data)
+    DrakewatcherManuscripts:ProcessTooltip(tooltip, data)
+end)

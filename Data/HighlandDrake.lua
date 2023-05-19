@@ -27,7 +27,7 @@ DWMS_HIGHLAND_DRAKE = {
         -- Full Transformation
         {
             -- Elementium Drake
-            { itemId = 205876, questId = 75967 },
+            { itemId = 205876, altItemId = 206955, questId = 75967 },
             -- Crimson Glad
             { itemId = 201792, questId = 72371, hidden = true },
         },

@@ -32,7 +32,7 @@ DWMS_PROTODRAKE = {
             -- Blue
             { itemId = 197390, questId = 69591, sources = { { coords = { zone = DWMS_ZONE.AZURE_SPAN, x = 13.0, y = 49.2 }, name = "Murik", note = "Iskaara Tuskarr - Renown 19", cost = { { type = "item", id = 190329, count = 1 }, { type = "currency", id = 2003, count = 400 } } } } },
             -- Green
-            { itemId = 197389, questId = 66720, sources = { { coords = { zone = DWMS_ZONE.OHNAHRAN_PLAINS, x = 60.4, y = 37.6 }, name = "Quartermaster Huseng", note = "Maruuk Centaur - Renown 19", cost = { { type = "item", id = 190327, count = 1 }, { type = "currency", id = 2003, count = 400 } } } } },
+            { itemId = 197389, altItemId = 192523, questId = 66720, sources = { { coords = { zone = DWMS_ZONE.OHNAHRAN_PLAINS, x = 60.4, y = 37.6 }, name = "Quartermaster Huseng", note = "Maruuk Centaur - Renown 19", cost = { { type = "item", id = 190327, count = 1 }, { type = "currency", id = 2003, count = 400 } } } } },
             -- Bronze
             { itemId = 197391, questId = 69592, sources = { { coords = { zone = DWMS_ZONE.VALDRAKKEN, x = 46.8, y = 78.8 }, name = "Kaestrasz", note = "Valdrakken Accord - Renown 21", cost = { { type = "item", id = 190324, count = 1 }, { type = "currency", id = 2003, count = 400 } } } } },
             -- White
@@ -167,7 +167,7 @@ DWMS_PROTODRAKE = {
         -- Jaw
         {
             -- Thick Spined
-            { itemId = 197355, questId = 69585 },
+            { itemId = 197355, altItemId = 197384, questId = 69585 },
             -- Horned
             { itemId = 197385, questId = 69586 },
             -- Hairy
