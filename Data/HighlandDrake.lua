@@ -22,6 +22,7 @@ DWMS_HIGHLAND_DRAKE = {
         'Jaw',
         'Brow',
         'Ears',
+        'Legs',
     },
     manuscripts = {
         -- Full Transformation
@@ -221,9 +222,10 @@ DWMS_HIGHLAND_DRAKE = {
             -- Ears
             { itemId = 197116, questId = 69317 },
         },
+        -- Legs
         {
             -- Spiked Legs
-            { itemId = 197134, questId = 69335, hidden = true },
+            { itemId = 197134, questId = 69335 },
         }
     },
 }
