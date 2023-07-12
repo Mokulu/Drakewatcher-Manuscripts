@@ -33,6 +33,8 @@ DWMS_WYLDERDRAKE = {
             { itemId = 197011, questId = 69211 },
             -- Red
             { itemId = 197010, questId = 69210 },
+            -- Infinite
+            { itemId = 208102, questId = 77258 },
             -- White
             { itemId = 197014, questId = 69214, hidden = true },
         },
@@ -105,7 +107,7 @@ DWMS_WYLDERDRAKE = {
         -- Head Armor
         {
             -- Helm
-            { itemId = 196990, questId = 69190, hidden = true },
+            --{ itemId = 196990, questId = 69190, hidden = true },
         },
         -- Pattern
         {

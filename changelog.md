@@ -1,3 +1,8 @@
+# v1.0.3
+* Added Infinite Scales
+* Added Highland Drake's "Spiked Legs"
+* Removed tracking of 'Helm' due to it not having a valid item for display
+
 # v1.0.2
 * Manuscript item tooltips will now indicate if you've obtained the appearance or not.
 

@@ -9,8 +9,8 @@ DWMS_SLITHERDRAKE = {
         'Crest',
         'Skin Scale Type',
         'Chin',
-        'Body Armor',
         'Head Armor',
+        'Body Armor',
         'Armor Color',
         'Tail',
         'Fur Color',
@@ -35,6 +35,8 @@ DWMS_SLITHERDRAKE = {
             { itemId = 203352, questId = 73843 },
             -- Red
             { itemId = 203353, questId = 73844 },
+            -- Infinite
+            { itemId = 208106, questId = 77259 },
             -- White
             { itemId = 203354, questId = 73845, hidden = true },
             -- Yellow
@@ -115,7 +117,7 @@ DWMS_SLITHERDRAKE = {
         -- Head Armor
         {
             -- Helm
-            { itemId = 203326, questId = 73814, hidden = true },
+            --{ itemId = 203326, questId = 73814, hidden = true },
         },
         -- Armor Color
         {

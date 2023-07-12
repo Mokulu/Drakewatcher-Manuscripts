@@ -42,6 +42,8 @@ DWMS_HIGHLAND_DRAKE = {
             { itemId = 197144, questId = 69345 },
             -- Bronze
             { itemId = 197145, questId = 69346 },
+            -- Infinite
+            { itemId = 208103, questId = 77257 },
             -- White
             { itemId = 197146, questId = 69347, hidden = true }
         },
@@ -129,7 +131,7 @@ DWMS_HIGHLAND_DRAKE = {
             -- Ornate Helm
             { itemId = 197120, questId = 69321 },
             -- Helm
-            { itemId = 197119, questId = 69320, hidden = true },
+            --{ itemId = 197119, questId = 69320, hidden = true },
         },
         -- Armor Color
         {

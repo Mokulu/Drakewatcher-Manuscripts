@@ -28,6 +28,8 @@ DWMS_VELOCIDRAKE = {
             { itemId = 197613, questId = 69817 },
             -- Red
             { itemId = 197614, questId = 69818 },
+            -- Infinite
+            { itemId = 208105, questId = 77256 },
             -- Teal
             { itemId = 197615, questId = 69819, hidden = true },
             -- White
@@ -120,7 +122,7 @@ DWMS_VELOCIDRAKE = {
         -- Head Armor
         {
             -- Helm
-            { itemId = 197600, questId = 69804, hidden = true },
+            --{ itemId = 197600, questId = 69804, hidden = true },
         },
         -- Armor Color
         {

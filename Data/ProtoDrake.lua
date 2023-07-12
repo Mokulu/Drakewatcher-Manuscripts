@@ -35,6 +35,8 @@ DWMS_PROTODRAKE = {
             { itemId = 197389, altItemId = 192523, questId = 66720, sources = { { coords = { zone = DWMS_ZONE.OHNAHRAN_PLAINS, x = 60.4, y = 37.6 }, name = "Quartermaster Huseng", note = "Maruuk Centaur - Renown 19", cost = { { type = "item", id = 190327, count = 1 }, { type = "currency", id = 2003, count = 400 } } } } },
             -- Bronze
             { itemId = 197391, questId = 69592, sources = { { coords = { zone = DWMS_ZONE.VALDRAKKEN, x = 46.8, y = 78.8 }, name = "Kaestrasz", note = "Valdrakken Accord - Renown 21", cost = { { type = "item", id = 190324, count = 1 }, { type = "currency", id = 2003, count = 400 } } } } },
+            -- Infinite
+            { itemId = 208104, questId = 77255 },
             -- White
             { itemId = 197393, questId = 69594, hidden = true },
         },
@@ -117,7 +119,7 @@ DWMS_PROTODRAKE = {
         -- Head Armor
         {
             -- Helm
-            { itemId = 197373, questId = 69574, hidden = true },
+            --{ itemId = 197373, questId = 69574, hidden = true },
         },
         -- Armor Color
         {
