@@ -31,7 +31,7 @@ DWMS_VELOCIDRAKE = {
             -- Infinite
             { itemId = 208105, questId = 77256 },
             -- Teal
-            { itemId = 197615, questId = 69819, hidden = true },
+            { itemId = 197615, questId = 69819 },
             -- White
             { itemId = 197616, questId = 69820, hidden = true },
         },

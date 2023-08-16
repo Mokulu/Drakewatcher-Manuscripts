@@ -1,3 +1,6 @@
+# v1.0.4
+* Riders of Azeroth Badge manuscripts are now always visible.
+
 # v1.0.3
 * Added Infinite Scales
 * Added Highland Drake's "Spiked Legs"

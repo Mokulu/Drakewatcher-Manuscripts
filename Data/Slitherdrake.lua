@@ -160,7 +160,7 @@ DWMS_SLITHERDRAKE = {
             -- Red
             { itemId = 203325, questId = 73813 },
             -- Blonde
-            { itemId = 203322, questId = 73810, hidden = true },
+            { itemId = 203322, questId = 73810 },
         },
         -- Brow
         {
